@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VueJS</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <button v-on:click="increase(2, $event)"> Click me</button>
+        <p> {{ counter }} </p>
+        <p v-on:mousemove="updateCord"> Cordinates: {{ x }} / {{ y }}</p>
+
+        Exercises 1
+        <div>
+            <button v-on:click="showAlert()"> Show Alert</button>
+        </div>
+        <div>
+            <input type="text" v-on:keydown.enter="updateText">
+            <p> {{ value }} </p>
+        </div> 
+        <input type="text" v-model="name">
+        <p> {{ name }} </p>-->
+        <!-- Exercises 2 -->
+        <!-- <div>
+            <p>Current Value: {{ value }}</p>
+            <button @click="value += 5">Add 5</button>
+            <button @click="value += 1">Add 1</button>
+            <p>{{ result }}</p>
+        </div>
+
+        <div>
+            <input type="text">
+            <p> {{ value }} </p>
+        </div> -->
+        <!-- Exercises 3 -->
+        <!-- <div>
+            <button @click="startEffect"> Start Effect</button>
+            <div id="effect" v-bind:class="effectClasses"> </div>
+        </div>
+        <div v-bind:class="[float, 'blue', 'text-color']">I got no class :(</div>
+        <div>
+            <input type="text" v-model="userClass">
+            <div v-bind:class="[{visible: true}, userClass]"></div>
+        </div>
+        <div>
+            <input type="text" v-model="userClass">
+            <input type="text" v-model="isVisible">
+            <div v-bind:class="[{visible: isVisible}, userClass]"></div>
+        </div>
+        <div>
+            <input type="text" v-model="myStyle.backgroundColor">
+            <div v-bind:style="myStyle"></div>
+        </div>
+        <div>
+            <button v-on:click="startProgress">Start Progress</button>
+            <div v-bind:class="['progress-bar']" v-bind:style="progressBar"></div>
+        </div> -->
+
+        <div>
+            <p v-if="show"> You can see me!</p>
+            <p v-else> Do you also see me</p>
+            <button @click="show = !show"> Switch </button>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                show: true,
+                counter: 0,
+                x: 0,
+                y: 0,
+                // value: '',
+                value: 0,
+                name: "aparna",
+                effectClasses: {
+                    highlight: false,
+                    shrink: true
+                },
+                float: 'float',
+                userClass: '',
+                isVisible: true,
+                myStyle: {
+                    width: '100px',
+                    height: '150px',
+                    backgroundColor: 'gray'
+                },
+                progressBar: {
+                    width: '0px',
+                    backgroundColor: 'red'
+                }
+            },
+            computed: {
+                result: function () {
+                    return this.value == 37 ? 'done' : 'not done yet';
+                }
+            },
+            watch: {
+                result: function () {
+                    var newValue = this;
+                    setTimeout(function () {
+                        newValue.value = 0;
+                    }, 5000);
+                }
+            },
+            methods: {
+                increase: function (step, event) {
+                    this.counter += step;
+                },
+                updateCord: function (event) {
+                    this.x = event.clientX;
+                    this.y = event.clientY;
+                },
+                showAlert: function () {
+                    alert('Hello!');
+                },
+                updateText: function () {
+                    this.value = event.target.value
+                },
+                startEffect: function () {
+                    var vm = this;
+                    setInterval(function () {
+                        vm.effectClasses.highlight = !vm.effectClasses.highlight;
+                        vm.effectClasses.shrink = !vm.effectClasses.shrink;
+                    }, 1000);
+                },
+                startProgress: function () {
+                    var vm = this;
+                    var width = 0;
+
+                    setInterval(function () {
+                        width = width + 10;
+                        vm.progressBar.width = width + 'px';
+                    }, 500);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
